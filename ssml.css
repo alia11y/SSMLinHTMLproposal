@@ -1,0 +1,5 @@
+body {font-family: sans-serif;}
+.codebox {font-family: courier; border: solid 1px black; background-color: #FFDEAD; margin: 5px; padding: 5px;}
+#result::before {content: 'Original Authored Source: '; font-family: sans-serif; color: blue; font-weight: bold;}
+#pstruct::before {content: 'Converted Source: '; font-family: sans-serif; color: blue; font-weight: bold;}
+button {font-size: 1.2em;}

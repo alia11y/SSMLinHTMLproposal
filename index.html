@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<!-- SSML Testing Tool v2.2 
+			Author: Mark Hakkinen (mhakkinen@ets.org)
+			Last Modified: June 2, 2016
+			-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>ETS SSML Markup Tester v2.2</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="ssml.css" >
+	
+  </head>
+
+  <body>
+	 <div class="container"> 
+    <h1>ETS SSML Markup Tester v2.3 (07/20/2017)</h1>
+    <p><span id="instructions-section">Enter text</span> marked up with either SSML elements or span 
+    elements using data attributes data-ssml and data-ssmlval (only a limited number of SSML tags supported). If using data attributes, 
+    select the data attributes checkbox. If the selected synthesizer supports SSML, you 
+    will hear the effects of the SSML markup when clicking the Speak button.</p>
+    <div>
+    <textarea id="AuthoredText" class="form-control txt" aria-labeledBy="instructions-section" ></textarea>
+	<br>
+    
+	</div>
+	<div >
+    	<button onclick="example2()" class="btn btn-primary btn-sm">SSML Kitchen Sink Example</button>
+    	<button onclick="example3()" class="btn btn-primary btn-sm">Simple Data Attribute Example</button>
+    	<button onclick="example4()" class="btn btn-primary btn-sm">Data Attribute Kitchen Sink Example</button>
+		<button onclick="example5()" class="btn btn-primary btn-sm">Date and Time Format</button>
+		<button onclick="example6()" class="btn btn-primary btn-sm">JSON To SSML</button>
+	</div>
+	<fieldset>
+		<legend>Options for SSML markup</legend>
+		<p>Some synthesizers may require wrapping the string with the &lt;speak&gt; 
+		element, and some may require the <code>&lt;? xml ?&gt;</code> prefix.</p>
+		<p>
+			<label for="chkWrapSSML">Wrap text with SSML <code>&lt;speak&gt;</code>:</label>
+			<input id="chkWrapSSML" type="checkbox" value="false">
+		</p>
+		<p>
+			<label for="chkXMLprefix">Prefix as XML:</label>
+			<input id="chkXMLprefix" type="checkbox" value="false">
+		</p>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Data-Attributes</legend>
+		<p>
+			<label for="chkDataAttr">Process data attribute encoded SSML:</label>
+			<input id="chkDataAttr" type="checkbox" value="false">
+		</p>
+	</fieldset>
+	<fieldset>
+		<legend>Authoring content with JSON input atributes</legend>
+		<p>
+			<label for="chkJSONAttr">Process HTML with JSON to SSML:</label>
+			<input id="chkJSONAttr" type="checkbox" value="false">
+		</p>
+	</fieldset>
+	
+	<fieldset>
+	<legend>Speech Controls</legend>
+    <p><button onclick="produceSpeech();" class="btn btn-primary">Start Reading</button> using
+    <label for="synthesizerList">Synthesizer:</label>
+   
+		<select id="synthesizerList">
+	    </select>
+     
+	  <button id="stopButton" class="btn btn-danger">Stop Reading</button>
+		
+	</p>
+	</fieldset>
+	
+    <fieldset>
+    	<legend>
+    		Visual Scratch Pad for processed text
+    	</legend>
+		<div class="codebox" id="pstruct"></div>
+        <div class="codebox" id="result"></div>
+     	
+    </fieldset>
+    <script src="script-mac.js"></script>
+	<!-- container for platform information -->
+	<p id="platform"></p>
+<div class="jumbotron">	<p>Note: if running on the Mac Platform, use data-attributes.</p>
+	<footer>Questions or comments to <a href="emailto:mhakkinen@ets.org">mhakkinen@ets.org</a></footer>
+
+</div>	
+<script type="text/javascript">
+	var browserInfo = getBrowserInfo();
+	document.getElementById("platform").innerHTML = "User Agent: " + browserInfo + " on "+ navigator.platform;
+	/*function example1()
+		{document.getElementById('AuthoredText').value="The pool is 10 <sub alias='meters'>m</sub> in length. The pool is another 10 <span data-ssml='sub' data-ssmlval='meters'>m</span> in length.";
+			document.getElementById('chkDataAttr').checked=true;
+	}*/
+	function example2()
+		{document.getElementById('AuthoredText').value="I am now <prosody rate='x-fast'>speaking very fast</prosody> and now at a normal rate. <prosody pitch='x-low'>This is half-pitch</prosody>"+"This is <emphasis level='strong'>stronger</emphasis> than the rest. My zip code is <say-as interpret-as='characters'>18648</say-as> and <say-as interpret-as='ordinal'>18648</say-as> is a large number.";
+				document.getElementById('chkDataAttr').checked=true;
+	}
+	function example3()
+		{document.getElementById('AuthoredText').value="The pool is 10 <span data-ssml='sub' data-ssmlval='meters'>m</span> in length.";
+			document.getElementById('chkDataAttr').checked=true;
+	}
+	function example4()
+		{document.getElementById('AuthoredText').value="I am now <span data-ssml='prosody' data-ssmlval='fast'>speaking very fast</span> and now at a normal rate. My zip code is <span data-ssml='say-as' data-ssmlval='characters'>18648</span> and <span data-ssml='say-as' data-ssmlval='ordinal'>18648</span> is a large number.";
+			document.getElementById('chkDataAttr').checked=true;
+
+	}
+
+	function example5()
+		{document.getElementById('AuthoredText').value="Today <span data-ssml='say-as' data-ssmlval='date' data-format='dmy'>04/07/2017</span> at <span data-ssml='say-as' data-ssmlval='time' data-format='hms24'>00:00:00</span> I am going to turn 21. and <span data-ssml='say-as' data-ssmlval='time' data-format='hms24'>19:21:30</span>";
+			document.getElementById('chkDataAttr').checked=true;
+
+	}
+
+	function example6()
+		{document.getElementById('AuthoredText').value="I am now <span data-ssml='{\"prosody\" : {\"rate\":\"x-fast\"}}'>speaking very fast</span> and now at a normal rate. The pool is 10 <span data-ssml='{\"sub\" : {\"alias\":\"meters\"}}'>m</span> in length. <span data-ssml='{\"prosody\" : {\"rate\":\"fast\"}, \"emphasis\" :{\"level\": \"strong\"} }'>Speaking very fast and strong. </span> <span data-ssml='{\"say-as\" : {\"interpret-as\":\"character\"}}'>12345</span> is large number and I am speaking <span data-ssml='{\"emphasis\" : {\"level\":\"strong\"}}'>very strong</span>";
+			document.getElementById('chkJSONAttr').checked=true;
+
+	}
+	
+</script>
+
+	 </div>
+</body>
+</html>
