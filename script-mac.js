@@ -7,13 +7,13 @@ var synth = window.speechSynthesis;
 var inputTxt = document.querySelector('.txt');
 var voiceSelect = document.querySelector('select');
 
-// Adding Stop button function
+// Adding Stop button to stop the synthesiser 
 var stopButton = document.getElementById('stopButton');
 stopButton.addEventListener('click', function(e) {
 			synth.cancel();
 		
 		});
-// Stop function ends
+// stop the synthesiser  ends
 var voices = [];
 
 function populateVoiceList() {
@@ -47,7 +47,12 @@ function displayXML(s)
   return wst;
 }
 
-
+// adding xml wrapper for windows synthesiser
+if (navigator.appVersion.indexOf("Win")!=-1) {
+	document.getElementById('chkXMLprefix').checked=true;
+  document.getElementById('chkWrapSSML').checked=true;
+}
+	
 
 function produceSpeech(){
 	
@@ -55,7 +60,7 @@ function produceSpeech(){
   var prefix;
   var wrapper;
 	var json2ssml = document.getElementById('chkJSONAttr').checked;
-  var bWrap=document.getElementById('chkWrapSSML').checked;
+	var bWrap=document.getElementById('chkWrapSSML').checked;
   var bPrefix=document.getElementById('chkXMLprefix').checked; 
   var bDataAttr=document.getElementById('chkDataAttr').checked;
  
@@ -169,8 +174,6 @@ if (bDataAttr) {
 						
 						 
   			}
-  
-  
       var ssmlcontent=document.createTextNode(preText + inText + postText);
       var parentDiv=es.parentNode;
       parentDiv.replaceChild(ssmlcontent, es);
@@ -217,59 +220,132 @@ if (bDataAttr) {
 	if (bWrap) {workstring=msSpeakTag+workstring+"</speak>";};
 
 // Function to convert json HTML to SSML
-		
- if (chkJSONAttr) {
+
+ if (json2ssml) {
+
+// ssml : ssmlval : [prevTxt, postTxt]
+
+		var two = {
+"prosody": {
+	 "fast":["[[rate 300]]", "[[rset 0]]"], 
+   "slow":["[[rate 75]]", "[[rset 0]]"], 
+	 "x-fast":["[[rate 300]]", "[[rset 0]]"]
+	},
+"say-as":
+	{
+		"characters":["[[char LTRL]]", "[[char NORM]]"],
+		"ordinal":["[[nmbr NORM]]", "[[nmbr NORM]]"],
+		"cardinal" : ["[[nmbr NORM]]", "[[nmbr NORM]]"],
+		"date" :["[[Day][/][Month][/][Year]]", "[[Day][/][Month][/][Year]]"],
+		"time" :["[[hour][:][minute][:][second]]", "[[hour][:][minute][:][second]]"]
+		},
+"emphasis" :{
+		"strong" :["[[emph +]]", "[[rset 0]]"],
+		"moderate" : ["[[emph +; emph +]]", "[[rset 0]]"],
+		"reduced" :["[[emph -]]", "[[rset 0]]"]
+	},
+	"break": {
+     "weak"  : ["[[slnc 250]]", "[[slnc 0]]"],
+		 "medium" : ["[[slnc 500]]", "[[slnc 0]]"],         
+		 "strong" : ["[[slnc 1000]]", "[[slnc 0]]"]
+		},
+		"sub" :{}
+
+}
+
 
  var ssml2Parse;
  ssml2Parse = workstring;
  var elssml = document.getElementById('pstruct');
  elssml.innerHTML=ssml2Parse;
  var elems = elssml.getElementsByTagName('span');
- 
-	 while (elems[0]) {
-		var elem = elems[0];
-		//{"prosody" : {"rate":"fast"}, "say-as" :{"format": "characters"},"emphasis" :{"level":"strong"}  }
-		var ssml = JSON.parse(elem.dataset.ssml);
-	
-		var innerMost = null; // to clear the previous value from the dom 
-		var rssml = []; // creating the array of ssml
-		for (var t in ssml) {
-			rssml.push(t);
-		}
-		//['parameter1','parameter2','parameter3']
-		// staring looping in the reverse order from last child 
-		for (var i = rssml.length - 1; i >= 0; i--) {
-			var tagName = rssml[i];
+  
+// checking for window operative system only
 
-			var child = document.createElement(tagName); 
-			// ssml[tagName] :: {"property":"attribute"}
-			for (var a in ssml[tagName]) {
-				child.setAttribute(a, ssml[tagName][a]);
-			}
-			if (innerMost == null) {
-				child.innerText = elem.innerText;
-			} else {
-				child.appendChild(innerMost);
-			}
-			innerMost = child;
-		}
-		elem.parentNode.replaceChild(child, elem);
-		
-		
-	} 
- 
+if (navigator.appVersion.indexOf("Win")>=1) {
+					var safe = elems.length;
+					while (elems[0] && safe) {
+						safe--;
+						var elem = elems[0];
+						//{"prosody" : {"rate":"fast"}, "say-as" :{"format": "characters"},"emphasis" :{"level":"strong"}  }
+						var ssml = JSON.parse(elem.dataset.ssml);
+						
+						var innerMost = null; // to clear the previous value from the DOM
+						var rssml = []; // creating the array of ssml
+						for (var t in ssml) {
+							
+							rssml.push(t);
+						}
+						//['parameter1','parameter2','parameter3']
+						// staring looping in the reverse order from last child 
+						for (var i = rssml.length - 1; i >= 0; i--) {
+							var tagName = rssml[i];
+
+							var child = document.createElement(tagName); 
+							// ssml[tagName] :: {"property":"attribute"}
+							for (var a in ssml[tagName]) {
+								child.setAttribute(a, ssml[tagName][a]);
+							}
+							if (innerMost == null) {
+								child.innerText = elem.innerText;
+							} else {
+								child.appendChild(innerMost);
+							}
+							innerMost = child;
+						}
+						elem.parentNode.replaceChild(child, elem);
+						
+						
+					} 
+				
+}
+// window operative system
+
+else {
+	    // var elems = document.getElementsByTagName("span");
+				var safe = elems.length;
+				while (elems[0] && safe) {
+					safe--;
+					var s = elems[0];
+					//console.log("source:"+s);
+					var ssml = JSON.parse(s.dataset.ssml);
+					for (var i in ssml) {
+						for (var j in two) {
+						//	console.log("i: "+i + ", j: "+j);
+							if (i == j) {
+								for (var k in ssml[i]) {
+									for (var l in two[j]) {
+								//		console.log("ssml[i][k]: "+ssml[i][k] + ", l: "+l);
+										if (ssml[i][k] == l) {
+										//	console.log("match");
+									//	console.log(s.out);
+											s.outerHTML =  two[j][l][0] + s.innerHTML + two[j][l][1];
+								    
+										}
+										
+									}
+								}
+							}
+						}
+					}
+				}
+
+}
+//if not chrome
+
+
  };
-
-
 
 	if (bPrefix) {workstring="<?xml version='1.0'?>"+workstring;};
 //  if (bPrefix) {workstring=workstring;};
  
 
 var utterThis = new SpeechSynthesisUtterance(workstring);
-if (chkJSONAttr) {
+
+if (json2ssml) {
 	var utterThis = new SpeechSynthesisUtterance(document.getElementById('pstruct').innerHTML);
 }
+
   var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
   for(i = 0; i < voices.length ; i++) {
     if(voices[i].name === selectedOption) {

@@ -32,6 +32,7 @@
     	<button onclick="example4()" class="btn btn-primary btn-sm">Data Attribute Kitchen Sink Example</button>
 		<button onclick="example5()" class="btn btn-primary btn-sm">Date and Time Format</button>
 		<button onclick="example6()" class="btn btn-primary btn-sm">JSON To SSML</button>
+				
 	</div>
 	<fieldset>
 		<legend>Options for SSML markup</legend>
@@ -60,7 +61,10 @@
 			<label for="chkJSONAttr">Process HTML with JSON to SSML:</label>
 			<input id="chkJSONAttr" type="checkbox" value="false">
 		</p>
+	
+	
 	</fieldset>
+	
 	
 	<fieldset>
 	<legend>Speech Controls</legend>
@@ -93,10 +97,7 @@
 <script type="text/javascript">
 	var browserInfo = getBrowserInfo();
 	document.getElementById("platform").innerHTML = "User Agent: " + browserInfo + " on "+ navigator.platform;
-	/*function example1()
-		{document.getElementById('AuthoredText').value="The pool is 10 <sub alias='meters'>m</sub> in length. The pool is another 10 <span data-ssml='sub' data-ssmlval='meters'>m</span> in length.";
-			document.getElementById('chkDataAttr').checked=true;
-	}*/
+	
 	function example2()
 		{document.getElementById('AuthoredText').value="I am now <prosody rate='x-fast'>speaking very fast</prosody> and now at a normal rate. <prosody pitch='x-low'>This is half-pitch</prosody>"+"This is <emphasis level='strong'>stronger</emphasis> than the rest. My zip code is <say-as interpret-as='characters'>18648</say-as> and <say-as interpret-as='ordinal'>18648</say-as> is a large number.";
 				document.getElementById('chkDataAttr').checked=true;
@@ -118,10 +119,17 @@
 	}
 
 	function example6()
-		{document.getElementById('AuthoredText').value="I am now <span data-ssml='{\"prosody\" : {\"rate\":\"x-fast\"}}'>speaking very fast</span> and now at a normal rate. The pool is 10 <span data-ssml='{\"sub\" : {\"alias\":\"meters\"}}'>m</span> in length. <span data-ssml='{\"prosody\" : {\"rate\":\"fast\"}, \"emphasis\" :{\"level\": \"strong\"} }'>Speaking very fast and strong. </span> <span data-ssml='{\"say-as\" : {\"interpret-as\":\"character\"}}'>12345</span> is large number and I am speaking <span data-ssml='{\"emphasis\" : {\"level\":\"strong\"}}'>very strong</span>";
+		{document.getElementById('AuthoredText').value="I am now <span data-ssml='{\"prosody\" : {\"rate\":\"x-fast\"}}'>speaking very fast</span> and now at a normal rate. I am speaking <span data-ssml='{\"prosody\" : {\"rate\":\"slow\"}}'>very slow</span>. You need to make it <span data-ssml='{\"emphasis\" : {\"level\":\"reduced\"}}'>weak</span>  and now normal rate. Here <span data-ssml='{\"say-as\" : {\"interpret-as\":\"cardinal\"}}'>12345</span> is large number.";
 			document.getElementById('chkJSONAttr').checked=true;
 
 	}
+
+	/*function example6()
+		{document.getElementById('AuthoredText').value="I am now <span data-ssml='{\"prosody\" : {\"rate\":\"x-fast\"}}'>speaking very fast</span> and now at a normal rate. <span data-ssml='{\"prosody\" : {\"rate\":\"fast\"}, \"emphasis\" :{\"level\": \"strong\"} }'>Speaking very fast and strong. </span> <span data-ssml='{\"say-as\" : {\"interpret-as\":\"character\"}}'>12345</span> is large number and I am speaking <span data-ssml='{\"emphasis\" : {\"level\":\"strong\"}}'>very strong</span>";
+			document.getElementById('chkJSONAttr').checked=true;
+
+	}*/
+	
 	
 </script>
 
