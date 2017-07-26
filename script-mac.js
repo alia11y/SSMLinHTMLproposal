@@ -1,6 +1,6 @@
 /* SSML Test Tool - Supporting Javascript
 	Author Mark Hakkinen (mhakkinen@ets.org)
-	Last modifed May 4, 2016
+	Last modifed July 26, 2017
 */
 var synth = window.speechSynthesis;
 
@@ -249,7 +249,9 @@ if (bDataAttr) {
 		 "medium" : ["[[slnc 500]]", "[[slnc 0]]"],         
 		 "strong" : ["[[slnc 1000]]", "[[slnc 0]]"]
 		},
-		"sub" :{}
+		"sub" :{
+			
+		}
 
 }
 

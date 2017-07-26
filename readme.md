@@ -12,7 +12,7 @@ attributes to the Apple speech markup and then sent to Web Speech.
 
 This code is made available "as is" for demonstration purposes, and not intended as a specific proposed method of implementing SSML support in HTML.
 
-A live version is available at [http://www.ets-research.org/ia11ylab/ssmltool]
+A live version is available at [http://www.ets-research.org/ia11ylab/ssmltool/ia/index.html]
 
 *Note* that you will need to have an SSML aware syntehsizer available on Windows, or be running on MacOS.
 
