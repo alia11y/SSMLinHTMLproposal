@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width">
-    <title>ETS SSML Markup Tester v2.2</title>
+    <title>ETS SSML Markup Tester v2.4</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="ssml.css" >
 	
@@ -16,7 +16,7 @@
 
   <body>
 	 <div class="container"> 
-    <h1>ETS SSML Markup Tester v2.3 (07/20/2017)</h1>
+    <h1>ETS SSML Markup Tester v2.4 (07/20/2017)</h1>
     <p><span id="instructions-section">Enter text</span> marked up with either SSML elements or span 
     elements using data attributes data-ssml and data-ssmlval (only a limited number of SSML tags supported). If using data attributes, 
     select the data attributes checkbox. If the selected synthesizer supports SSML, you 
@@ -27,10 +27,7 @@
     
 	</div>
 	<div >
-    	<button onclick="example2()" class="btn btn-primary btn-sm">SSML Kitchen Sink Example</button>
-    	<button onclick="example3()" class="btn btn-primary btn-sm">Simple Data Attribute Example</button>
-    	<button onclick="example4()" class="btn btn-primary btn-sm">Data Attribute Kitchen Sink Example</button>
-		<button onclick="example5()" class="btn btn-primary btn-sm">Date and Time Format</button>
+    	
 		<button onclick="example6()" class="btn btn-primary btn-sm">JSON To SSML</button>
 				
 	</div>
@@ -98,28 +95,10 @@
 	var browserInfo = getBrowserInfo();
 	document.getElementById("platform").innerHTML = "User Agent: " + browserInfo + " on "+ navigator.platform;
 	
-	function example2()
-		{document.getElementById('AuthoredText').value="I am now <prosody rate='x-fast'>speaking very fast</prosody> and now at a normal rate. <prosody pitch='x-low'>This is half-pitch</prosody>"+"This is <emphasis level='strong'>stronger</emphasis> than the rest. My zip code is <say-as interpret-as='characters'>18648</say-as> and <say-as interpret-as='ordinal'>18648</say-as> is a large number.";
-				document.getElementById('chkDataAttr').checked=true;
-	}
-	function example3()
-		{document.getElementById('AuthoredText').value="The pool is 10 <span data-ssml='sub' data-ssmlval='meters'>m</span> in length.";
-			document.getElementById('chkDataAttr').checked=true;
-	}
-	function example4()
-		{document.getElementById('AuthoredText').value="I am now <span data-ssml='prosody' data-ssmlval='fast'>speaking very fast</span> and now at a normal rate. My zip code is <span data-ssml='say-as' data-ssmlval='characters'>18648</span> and <span data-ssml='say-as' data-ssmlval='ordinal'>18648</span> is a large number.";
-			document.getElementById('chkDataAttr').checked=true;
 
-	}
-
-	function example5()
-		{document.getElementById('AuthoredText').value="Today <span data-ssml='say-as' data-ssmlval='date' data-format='dmy'>04/07/2017</span> at <span data-ssml='say-as' data-ssmlval='time' data-format='hms24'>00:00:00</span> I am going to turn 21. and <span data-ssml='say-as' data-ssmlval='time' data-format='hms24'>19:21:30</span>";
-			document.getElementById('chkDataAttr').checked=true;
-
-	}
 
 	function example6()
-		{document.getElementById('AuthoredText').value="I am now <span data-ssml='{\"prosody\" : {\"rate\":\"x-fast\"}}'>speaking very fast</span> and now at a normal rate. I am speaking <span data-ssml='{\"prosody\" : {\"rate\":\"slow\"}}'>very slow</span>. You need to make it <span data-ssml='{\"emphasis\" : {\"level\":\"strong\"}}'>very strong should sound different</span>, very strong and now normal rate. Here <span data-ssml='{\"say-as\" : {\"interpret-as\":\"cardinal\"}}'>12345</span> is large number.";
+		{document.getElementById('AuthoredText').value="I am now <span data-ssml='{\"prosody\" : {\"rate\":\"x-fast\"}}'>speaking very fast</span> and now at a normal rate. I am speaking <span data-ssml='{\"prosody\" : {\"rate\":\"slow\"}}'>very slow</span>.  You need to make it <span data-ssml='{\"emphasis\" : {\"level\":\"strong\"}}'>very strong should sound different</span>, very strong and now normal rate. Here <span data-ssml='{\"say-as\" : {\"interpret-as\":\"cardinal\"}}'>12345</span> is large number.";
 			document.getElementById('chkJSONAttr').checked=true;
 
 	}
