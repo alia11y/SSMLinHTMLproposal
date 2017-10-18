@@ -14,9 +14,4 @@ A live version is available at [http://www.ets-research.org/ia11ylab/ssmltool/]
 
 Tested on Windows with Chrome and FireFox using Ivona TTS, and Windows 10 Edge with Microsoft TTS.  Also on MacOS with Chrome and Safari.
 
-
-
-
-data-SSML: The SSML in HTML Data Attribute
-
-The data-ssml attribute can be applied to HTML elements containing textual content. The attribute value is a JSON structure which contains the SSML function (e.g., “say-as”) and any required property-value pairs needed to fully specify the function.
+Questions? Please write mhakkinen@ets.org Or iali@ets.org
