@@ -14,4 +14,6 @@ A live version is available at [http://www.ets-research.org/ia11ylab/ssmltool/]
 
 Tested on Windows with Chrome and FireFox using Ivona TTS, and Windows 10 Edge with Microsoft TTS.  Also on MacOS with Chrome and Safari.
 
+It works on Mac Machine using data attributes with IOS speech Syntesizer and On Window machine with IVONA Seech Synthesizer.    
+
 Questions? Please write Mark Hakkinen (mhakkinen@ets.org) Or Irfan Ali (iali@ets.org)
