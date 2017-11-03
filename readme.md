@@ -10,7 +10,7 @@ This code is made available "as is" for demonstration purposes, and not intended
 
 A live version is available at [http://www.ets-research.org/ia11ylab/ssmltool/]
 
-*Note* that you will need to have an SSML aware syntehsizer available on Windows, or be running on MacOS.
+*Note* that you will need to have an SSML aware synthesizer available on Windows, or be running on MacOS.
 
 Tested on Windows with Chrome and FireFox using Ivona TTS, and Windows 10 Edge with Microsoft TTS.  Also on MacOS with Chrome and Safari.
 
