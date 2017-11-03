@@ -61,8 +61,8 @@ function produceSpeech(){
   var wrapper;
 	var json2ssml = document.getElementById('chkJSONAttr').checked;
 	var bWrap=document.getElementById('chkWrapSSML').checked;
-  var bPrefix=document.getElementById('chkXMLprefix').checked; 
-  var bDataAttr=document.getElementById('chkDataAttr').checked;
+    var bPrefix=document.getElementById('chkXMLprefix').checked; 
+    var bDataAttr=document.getElementById('chkDataAttr').checked;
  
  
   var msSpeakTag='<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" ' + 
