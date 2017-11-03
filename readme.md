@@ -14,4 +14,4 @@ A live version is available at [http://www.ets-research.org/ia11ylab/ssmltool/]
 
 Tested on Windows with Chrome and FireFox using Ivona TTS, and Windows 10 Edge with Microsoft TTS.  Also on MacOS with Chrome and Safari.
 
-Questions? Please write mhakkinen@ets.org Or iali@ets.org
+Questions? Please write Mark Hakkinen (mhakkinen@ets.org) Or Irfan Ali (iali@ets.org)

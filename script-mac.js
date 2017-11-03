@@ -1,6 +1,6 @@
 /* SSML Test Tool - Supporting Javascript
-	Author Mark Hakkinen (mhakkinen@ets.org)
-	Last modifed July 26, 2017
+	Author Mark Hakkinen (mhakkinen@ets.org) and Irfan Ali (iali@ets.org)
+	Last modifed Nov 3, 2017
 */
 var synth = window.speechSynthesis;
 
@@ -103,7 +103,8 @@ function produceSpeech(){
 		 "strong" : ["[[slnc 1000]]", "[[slnc 0]]"]
 		},
 		"sub" :{
-			
+			"read" : ["[[]]", "[[]]"],
+			"red" : ["[[]]", "[[]]"]
 		}
 
 }

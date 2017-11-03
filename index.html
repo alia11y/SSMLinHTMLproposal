@@ -2,8 +2,8 @@
 <html>
   <head>
 	<!-- SSML Testing Tool v2.2 
-			Author: Mark Hakkinen (mhakkinen@ets.org)
-			Last Modified: June 2, 2016
+			Author: Mark Hakkinen (mhakkinen@ets.org), Irfan Ali (iali@ets.org)
+			Last Modified: Nov 2, 2017
 			-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -28,7 +28,8 @@
 	</div>
 	<div >
     	
-		<button onclick="example6()" class="btn btn-primary btn-sm">JSON To SSML</button>
+		<button onclick="example1()" class="btn btn-primary btn-sm">JSON To SSML</button>
+		<button onclick="example2()" class="btn btn-primary btn-sm">SSML Sub Examples</button>
 				
 	</div>
 	<fieldset>
@@ -97,18 +98,19 @@
 	
 
 
-	function example6()
+	function example1()
 		{document.getElementById('AuthoredText').value="I am now <span data-ssml='{\"prosody\" : {\"rate\":\"x-fast\"}}'>speaking very fast</span> and now at a normal rate. I am speaking <span data-ssml='{\"prosody\" : {\"rate\":\"slow\"}}'>very slow</span>.  You need to make it <span data-ssml='{\"emphasis\" : {\"level\":\"strong\"}}'>very strong should sound different</span>, very strong and now normal rate. Here <span data-ssml='{\"say-as\" : {\"interpret-as\":\"cardinal\"}}'>12345</span> is large number.";
 			document.getElementById('chkJSONAttr').checked=true;
 
 	}
 
-	/*function example6()
-		{document.getElementById('AuthoredText').value="I am now <span data-ssml='{\"prosody\" : {\"rate\":\"x-fast\"}}'>speaking very fast</span> and now at a normal rate. <span data-ssml='{\"prosody\" : {\"rate\":\"fast\"}, \"emphasis\" :{\"level\": \"strong\"} }'>Speaking very fast and strong. </span> <span data-ssml='{\"say-as\" : {\"interpret-as\":\"character\"}}'>12345</span> is large number and I am speaking <span data-ssml='{\"emphasis\" : {\"level\":\"strong\"}}'>very strong</span>";
+	function example2()
+		{document.getElementById('AuthoredText').value="He was born in <span data-ssml='{\"say-as\": {\"interpret-as\":\"cardinal\"}}'>1875</span> or <span data-ssml='{\"say-as\": {\"interpret-as\":\"characters\"}}'>1875</span>. Students were told to <span data-ssml='{\"sub\": {\"alias\":\"read\"}}'>read</span> one book before bed. My daughter <span data-ssml='{\"sub\": {\"alias\":\"red\"}}'>read</span> two, not just one.";
 			document.getElementById('chkJSONAttr').checked=true;
 
-	}*/
-	
+	}
+
+		
 	
 </script>
 
