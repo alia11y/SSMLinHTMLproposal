@@ -23,8 +23,10 @@ The words <span aria-ssml='{"phoneme": {"ph":"ˈkɔɹdəˌneɪt/"}}'>coordinate<
 ````  
 #### `break`
 ````javascript
-The point <span aria-ssml='{"break":{"time":"250ms"}}'></span><span  aria-ssml='{"say-as" : {"interpret-as":"characters"}}'>x,y</span> is on the coordinate plane.
+The point <span aria-ssml='{"break":{"time":"250ms"}}'></span><span aria-ssml='{"say-as" : {"interpret-as":"characters"}}'>x,y</span> is on the coordinate plane.
 ````
+#### `sub`
+1 <span data-ssml='{"sub": {"alias":"pico meter"}}'>pm</span> is equal to one trillionth of a meter.````
 
 ## SSML Tool
 
