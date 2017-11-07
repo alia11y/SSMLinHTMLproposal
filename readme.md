@@ -28,8 +28,16 @@ The point <span aria-ssml='{"break":{"time":"250ms"}}'></span>
 ````
 #### `sub`
 ````javascript
-1 <span data-ssml='{"sub": {"alias":"pico meter"}}'>pm</span> is equal to one trillionth of a meter.
+1 <span aria-ssml='{"sub": {"alias":"pico meter"}}'>pm</span> is equal to one trillionth of a meter.
 ````
+#### `emphasis`
+````javascript
+You <strong><span aria-ssml='{"emphasis": {"level":"strong"}}'>must</span></strong> answer 
+all questions in order to continue.
+````
+Note in this last example, the `aria-ssml` attribute could have been placed on the `strong` element.
+
+
 
 ## SSML Tool
 
