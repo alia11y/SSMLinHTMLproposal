@@ -9,7 +9,17 @@ we propose for your consideration a new ARIA attribute tentatively 'ARIA-SSML' t
 ## aria-SSML
 
 We have been experimenting with different approaches and settled on the JSON approach, tested using a data attribute, data-ssml.  The data-ssml attribute can be applied to HTML elements containing textual content. The attribute value is a JSON structure which contains the SSML function (e.g., “say-as”) and any required property-value pairs needed to fully specify the function.  While we could propose simply standardizing on a data-attribute, we believe the importance of seeking AT support argues for moving this forward as an ARIA attribute.  
-  
+
+### Examples
+
+#### `say-as`
+```javascript
+The angle <span data-ssml='{"say-as" : {"interpret-as":"characters"}}'>CAB</span> is 30 degrees.
+````
+#### `phoneme`
+```javascript
+Paul will <span data-ssml='{"phoneme": {"ph":"ˈkɔɹdəˌneɪt/"}}'>coordinate</span>  the X <span data-ssml='{"phoneme": {"ph":"ˈkɔɹdənɪt"}}'>coordinate</span>  values.
+````  
 ## SSML Tool
 
 SSMLTool is a demonstrator for examining data-SSML support using the W3C Web Speech Synthesis API.  The tool demonstrates the basic lprocess of consuming
