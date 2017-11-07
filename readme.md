@@ -14,15 +14,20 @@ We have been experimenting with different approaches and settled on the JSON app
 
 #### `say-as`
 ```javascript
-The angle <span data-ssml='{"say-as" : {"interpret-as":"characters"}}'>CAB</span> is 30 degrees.
+The angle <span aria-ssml='{"say-as" : {"interpret-as":"characters"}}'>CAB</span> is 30 degrees.
 ````
 #### `phoneme`
 ```javascript
-Paul will <span data-ssml='{"phoneme": {"ph":"ˈkɔɹdəˌneɪt/"}}'>coordinate</span>  the X <span data-ssml='{"phoneme": {"ph":"ˈkɔɹdənɪt"}}'>coordinate</span>  values.
+The words <span aria-ssml='{"phoneme": {"ph":"ˈkɔɹdəˌneɪt/"}}'>coordinate</span> and 
+<span aria-ssml='{"phoneme": {"ph":"ˈkɔɹdənɪt"}}'>coordinate</span> have different meanings.
 ````  
+#### `break`
+````javascript
+The point <span data-ssml='{"break":{"time":"250ms"}}'></span><span  data-ssml='{"say-as" : {"interpret-as":"characters"}}'>x,y</span> is on the coordinate plane.
+
 ## SSML Tool
 
-SSMLTool is a demonstrator for examining data-SSML support using the W3C Web Speech Synthesis API.  The tool demonstrates the basic lprocess of consuming
+SSMLTool is a demonstrator for examining data-SSML support using the W3C Web Speech Synthesis API.  The tool demonstrates the basic process of consuming JSON encoded SSML contained as the attribute value of `data-ssml`. 
 
 This code is made available "as is" for demonstration purposes, and not intended as a specific proposed method of implementing SSML support in HTML.
 
