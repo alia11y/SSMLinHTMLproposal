@@ -23,7 +23,8 @@ The words <span aria-ssml='{"phoneme": {"ph":"ˈkɔɹdəˌneɪt/"}}'>coordinate<
 ````  
 #### `break`
 ````javascript
-The point <span data-ssml='{"break":{"time":"250ms"}}'></span><span  data-ssml='{"say-as" : {"interpret-as":"characters"}}'>x,y</span> is on the coordinate plane.
+The point <span aria-ssml='{"break":{"time":"250ms"}}'></span><span  aria-ssml='{"say-as" : {"interpret-as":"characters"}}'>x,y</span> is on the coordinate plane.
+````
 
 ## SSML Tool
 
