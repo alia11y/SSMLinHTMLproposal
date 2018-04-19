@@ -3,7 +3,7 @@
   <head>
 	<!-- SSML Testing Tool v2.2 
 			Author: Mark Hakkinen (mhakkinen@ets.org), Irfan Ali (iali@ets.org)
-			Last Modified: Nov 2, 2017
+			Last Modified: April 18, 2018
 			-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -106,7 +106,7 @@
 	}
 
 	function example2()
-		{document.getElementById('AuthoredText').value="He was born in <span data-ssml='{\"say-as\": {\"interpret-as\":\"cardinal\"}}'>1875</span> or <span data-ssml='{\"say-as\": {\"interpret-as\":\"characters\"}}'>1875</span>. Students were told to <span data-ssml='{\"sub\": {\"alias\":\"read\"}}'>read</span> one book before bed. My daughter <span data-ssml='{\"sub\": {\"alias\":\"red\"}}'>read</span> two, not just one.";
+		{document.getElementById('AuthoredText').value="He was born in <span data-ssml='{\"break\": {\"strength\":\"strong\"}}'></span> <span data-ssml='{\"say-as\": {\"interpret-as\":\"cardinal\"}}'><span data-ssml='{\"emphasis\" : {\"level\":\"strong\"}}'>1875</span></span> or <span data-ssml='{\"say-as\": {\"interpret-as\":\"characters\"}}'>1875</span>. Students were told to read one book before bed. My daughter <span data-ssml='{\"sub\": {\"alias\":\"red\"}}'>read</span> two, not just one. I need a little <span data-ssml='{\"break\": {\"strength\":\"weak\"}}'></span>break before I jump to another example. <span data-ssml='{\"sub\": {\"alias\":\"World Wide Web Consortium\"}}'>W3C</span> should have <span data-ssml='{\"sub\": {\"alias\":\"Speech Synthesis Markup Language\"}}'>SSML</span> support in HTML.";
 			document.getElementById('chkJSONAttr').checked=true;
 
 	}

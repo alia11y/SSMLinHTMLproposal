@@ -98,13 +98,19 @@ function produceSpeech(){
 		"reduced" :["[[emph -]]", "[[rset 0]]"]
 	},
 	"break": {
-     "weak"  : ["[[slnc 250]]", "[[slnc 0]]"],
+          "weak"  : ["[[slnc 250]]", "[[slnc 0]]"],
 		 "medium" : ["[[slnc 500]]", "[[slnc 0]]"],         
 		 "strong" : ["[[slnc 1000]]", "[[slnc 0]]"]
 		},
+	
 		"sub" :{
-			"read" : ["[[]]", "[[]]"],
-			"red" : ["[[]]", "[[]]"]
+			"alias" : [],
+	
+			"red" : ["[[]]", "[[]]"],
+			"World Wide Web Consortium" : ["[[]]", "[[]]"],
+			"Speech Synthesis Markup Language" : ["[[]]", "[[]]"]
+			
+			
 		}
 
 }
