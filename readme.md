@@ -1,10 +1,10 @@
-# Proposal Including SSML in HTML via WAI-ARIA
+# Proposal Including SSML in HTML via a JSON Model
 
 Currently, there is no standards-based mechanism for incorporating SSML into HTML to provide pronunciation or presentational hinting to assistive technologies which render text using text to speech synthesis (such as screen readers and read aloud tools). This issue has been previously shared with the WAI-ARIA group at TPAC 2016 [1]. 
 
-The need for accurate pronunciation or presentation of spoken content is important in educational content, and critical in educational assessment. Across assessment vendors, a variety of approaches have been used to solve this problem, ranging from improper use of the WAI-ARIA standard, to creation of custom attributes or data-attributes. There is no consistent approach. Further, some of these approaches are problematic for braille users when hinted text intended for TTS spoken presentation is also rendered on the refreshable braille display. 
+The need for accurate pronunciation or presentation of spoken content is important in educational content, and critical in educational assessment. Across assessment vendors, a variety of approaches have been used to solve this problem, ranging from improper use of the WAI-ARIA standard, to creation of custom attributes or data-attributes. There is no consistent approach, and thus no interoperability. Further, some of these approaches are problematic for braille users when hinted text intended for TTS spoken presentation is also rendered on the refreshable braille display. 
 
-We propose for your consideration a new WAI-ARIA attribute tentatively named `aria-SSML` which utilizes JSON to encapsulate SSML functions, attributes, and values in a manner that allows for easy consumption by Assistive Technologies. 
+We propose for your consideration a new, standardized approach using an attribute tentatively named `aria-SSML` which utilizes JSON to encapsulate SSML functions, attributes, and values in a manner that allows for easy consumption by Assistive Technologies.  WAI-ARIA is our proposed host for this attribute, as the primary consumer is expected to be assisitive technology such as screen readers and read aloud tools.  That said, our sample implementation uses `data-ssml` to demonstrate the capability.
 
 ## `aria-SSML`
 
@@ -41,7 +41,7 @@ Note in this last example, the `aria-ssml` attribute could have been placed on t
 
 ## SSML Tool
 
-SSMLTool is a demonstrator for examining data-SSML support using the W3C Web Speech Synthesis API.  The tool demonstrates the basic process of consuming JSON encoded SSML contained as the attribute value of `data-ssml`. 
+SSMLTool is a demonstrator for examining JSON-baed approach to SSML support using the W3C Web Speech Synthesis API.  The tool demonstrates the basic process of consuming JSON encoded SSML contained as the attribute value of `data-ssml`. 
 
 This code is made available "as is" for demonstration purposes, and not intended as a specific proposed method of implementing SSML support in HTML.
 
