@@ -1,10 +1,10 @@
 /* SSML Test Tool - Supporting Javascript
 	Author Mark Hakkinen (mhakkinen@ets.org) and Irfan Ali (iali@ets.org)
-	Last modifed Nov 3, 2017
+	Last modifed May 21, 2018
 */
 var synth = window.speechSynthesis;
 
-var inputTxt = document.querySelector('.txt');
+var inputTxt = document.querySelector('#AuthoredText');
 var voiceSelect = document.querySelector('select');
 
 // Adding Stop button to stop the synthesiser 
@@ -98,17 +98,18 @@ function produceSpeech(){
 		"reduced" :["[[emph -]]", "[[rset 0]]"]
 	},
 	"break": {
-          "weak"  : ["[[slnc 250]]", "[[slnc 0]]"],
+        "weak"  : ["[[slnc 250]]", "[[slnc 0]]"],
 		 "medium" : ["[[slnc 500]]", "[[slnc 0]]"],         
-		 "strong" : ["[[slnc 1000]]", "[[slnc 0]]"]
+		 "strong" : ["[[slnc 1000]]", "[[slnc 0]]"],
+		 "time" : ["[[second]]", "[[second]]"]
+
 		},
 	
-		"sub" :{
-			"alias" : [],
-	
-			"red" : ["[[]]", "[[]]"],
-			"World Wide Web Consortium" : ["[[]]", "[[]]"],
-			"Speech Synthesis Markup Language" : ["[[]]", "[[]]"]
+   "sub" : {
+	 "alias" : ["[[]]"],
+	 "red" : ["[[]]", "[[]]"],
+	 "World Wide Web Consortium" : ["[[]]", "[[]]"],
+	 "Speech Synthesis Markup Language" : ["[[]]", "[[]]"]
 			
 			
 		}
@@ -129,7 +130,6 @@ if (navigator.appVersion.indexOf("Win")>=1) {
 					while (elems[0] && safe) {
 						safe--;
 						var elem = elems[0];
-						//{"prosody" : {"rate":"fast"}, "say-as" :{"format": "characters"},"emphasis" :{"level":"strong"}  }
 						var ssml = JSON.parse(elem.dataset.ssml);
 						
 						var innerMost = null; // to clear the previous value from the DOM

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<!-- SSML Testing Tool v2.2 
+	<!-- SSML Testing Tool v2.3 
 			Author: Mark Hakkinen (mhakkinen@ets.org), Irfan Ali (iali@ets.org)
-			Last Modified: April 18, 2018
+			Last Modified: October 10, 2018
 			-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -11,39 +11,58 @@
     <title>ETS SSML Markup Tester v2.4</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="ssml.css" >
+	<script src="script.js"></script>
 	
   </head>
 
   <body>
 	 <div class="container"> 
-    <h1>ETS SSML Markup Tester v2.4 (07/20/2017)</h1>
-    <p><span id="instructions-section">Enter text</span> marked up with either SSML elements or span 
-    elements using data attributes data-ssml and data-ssmlval (only a limited number of SSML tags supported). If using data attributes, 
-    select the data attributes checkbox. If the selected synthesizer supports SSML, you 
-    will hear the effects of the SSML markup when clicking the Speak button.</p>
+    <h1>ETS SSML Markup Tester v2.5 (10/10/2018)</h1>
+    <p><span id="instructions-section">Enter text</span> and then manually markup using the SSML data attribute format (described at:
+		<a href="https://github.com/mhakkinen/SSMLinHTMLproposal">https://github.com/mhakkinen/SSMLinHTMLproposal</a>), by selecting the sample
+		button below, or entering text,  then highlighting text, and selecting one of the SSML toolbar actions to be applied to the text.  The appropriate
+		SSML JSON attribute will be added.  Once your text is ready, click the speak button.</p>
+		<p>Your platform must have an speech synthesizer that supports SSML if you using Windows or other platforms with native SSML supporting synthesizers.
+			If using MacOS, the JSON-ized SSML will be mapped to the Apple Speech markup.
+		</p>
     <div>
-    <textarea id="AuthoredText" class="form-control txt" aria-labeledBy="instructions-section" ></textarea>
+	<button id="prosodyBTN" class="btn btn-info btn-xs">Prosody Fast</button> 
+	<button id="prosodySlow" class="btn btn-warning btn-xs">Prosody slow</button> 
+	<button id="strongVoice" class="btn btn-success btn-xs">Emphasis Strong</button>
+	<button id="sayCardinal" class="btn btn-warning btn-xs">Say As Cardinal</button>
+	<!--<button id="sayOrdinal" class="btn btn-default btn-xs">Say As Ordinal</button>-->
+	<button id="sayChar" class="btn btn-info btn-xs">Say As Char</button>
+	<button id="breakMedium" class="btn btn-warning btn-xs">Break</button>
+	<button id="subAlias" class="btn btn-success btn-xs">Sub</button>
+	
+	
+	<br>
+	<textarea id="AuthoredText" class="form-control txt" aria-labeledBy="instructions-section"  rows="4" cols="50" ></textarea>
 	<br>
     
 	</div>
 	<div >
     	
-		<button onclick="example1()" class="btn btn-primary btn-sm">JSON To SSML</button>
-		<button onclick="example2()" class="btn btn-primary btn-sm">SSML Sub Examples</button>
+		<button onclick="example1()" class="btn btn-primary btn-sm">JSON Example 1</button>
+		<button onclick="example2()" class="btn btn-primary btn-sm">JSON Example 2</button>
+		<button onclick="example3()" class="btn btn-primary btn-sm">Plain Text</button>
+		<button onclick="clearText()" class="btn btn-danger btn-sm">Clear Text</button>
 				
 	</div>
+	<div style="display:none;">
 	<fieldset>
 		<legend>Options for SSML markup</legend>
 		<p>Some synthesizers may require wrapping the string with the &lt;speak&gt; 
 		element, and some may require the <code>&lt;? xml ?&gt;</code> prefix.</p>
 		<p>
-			<label for="chkWrapSSML">Wrap text with SSML <code>&lt;speak&gt;</code>:</label>
-			<input id="chkWrapSSML" type="checkbox" value="false">
+			<span><label for="chkWrapSSML">Wrap text with SSML <code>&lt;speak&gt;</code>:</label>
+			<input id="chkWrapSSML" type="checkbox" value="false"></span> 
+			<span>
+				&nbsp;<label for="chkXMLprefix">Prefix as XML:</label>
+				<input id="chkXMLprefix" type="checkbox" value="false">
+			</span>
 		</p>
-		<p>
-			<label for="chkXMLprefix">Prefix as XML:</label>
-			<input id="chkXMLprefix" type="checkbox" value="false">
-		</p>
+		
 	</fieldset>
 
 	<fieldset>
@@ -63,17 +82,16 @@
 	
 	
 	</fieldset>
-
+</div>
 	
 	<fieldset>
 	<legend>Speech Controls</legend>
     <p><button onclick="produceSpeech();" class="btn btn-primary">Start Reading</button> using
     <label for="synthesizerList">Synthesizer:</label>
-   
-		<select id="synthesizerList">
-	    </select>
-     
-	  <button id="stopButton" class="btn btn-danger">Stop Reading</button>
+   		<select id="synthesizerList"></select>
+	
+		   <!-- button to stop speech synth -->
+		   <button id="stopButton" class="btn btn-danger">Stop Reading</button>
 		
 	</p>
 	</fieldset>
@@ -81,16 +99,21 @@
     <fieldset>
     	<legend>
     		Visual Scratch Pad for processed text
-    	</legend>
+		</legend>
+		<div>Generated String to be synthesized (specific to platform: MacSpeech markup or SSML:</div>
+		
 		<div class="codebox" id="pstruct"></div>
+		<div>JSON-ized SSML the above was generate from:</div>
         <div class="codebox" id="result"></div>
      	
-    </fieldset>
+	</fieldset>
+	
     <script src="script-mac.js"></script>
 	<!-- container for platform information -->
+	
 	<p id="platform"></p>
-<div class="jumbotron">	<p>Note: if running on the Mac Platform, use data-attributes.</p>
-	<footer>Questions or comments to <a href="emailto:mhakkinen@ets.org">Mark Hakkinen</a> or <a href="emailto:mhakkinen@ets.org">Irfan Ali</a> </footer>
+	<footer>Questions or comments to <a href="emailto:mhakkinen@ets.org">Mark Hakkinen</a> or <a href="emailto:iali@ets.org">Irfan Ali</a> </footer>
+
 
 </div>	
 <script type="text/javascript">
@@ -100,7 +123,7 @@
 
 
 	function example1()
-		{document.getElementById('AuthoredText').value="I am now <span data-ssml='{\"prosody\" : {\"rate\":\"x-fast\"}}'>speaking very fast</span> and now at a normal rate. I am speaking <span data-ssml='{\"prosody\" : {\"rate\":\"slow\"}}'>very slow</span>.  You need to make it <span data-ssml='{\"emphasis\" : {\"level\":\"strong\"}}'>very strong should sound different</span>, very strong and now normal rate. Here <span data-ssml='{\"say-as\" : {\"interpret-as\":\"cardinal\"}}'>12345</span> is large number.";
+		{document.getElementById('AuthoredText').value="I am now <span data-ssml='{\"prosody\" : {\"rate\":\"x-fast\"}}'>speaking very fast</span> and now <span data-ssml='{\"break\": {\"strength\":\"strong\"}}'></span> at a normal rate. I am speaking <span data-ssml='{\"prosody\" : {\"rate\":\"slow\"}}'>very slow</span>.  You need to make it <span data-ssml='{\"emphasis\" : {\"level\":\"strong\"}}'>very strong should sound different</span>, very strong and now normal rate. Here <span data-ssml='{\"say-as\" : {\"interpret-as\":\"cardinal\"}}'>12345</span> is large number.";
 			document.getElementById('chkJSONAttr').checked=true;
 
 	}
@@ -111,7 +134,15 @@
 
 	}
 
+	function example3()
+		{document.getElementById('AuthoredText').value="The objective of the Spoken Presentation Task Force is to develop normative specifications and best practices 18789 guidance collaborating with other W3C groups as appropriate, to provide for proper pronunciation in HTML content when using text to speech (TTS) synthesis. SSML is actually more than just an exercise in floccinaucinihilipilification. in the following sequence of numbers, what would be the next number to occupy the blank: 111, 222, 333, --- ";
+			document.getElementById('chkJSONAttr').checked=true;
+
+	}
 		
+	function clearText() {
+        document.getElementById("AuthoredText").value = "";
+    }
 	
 </script>
 
