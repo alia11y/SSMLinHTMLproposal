@@ -8,7 +8,7 @@ The data-ssml attribute can be applied to HTML elements containing textual conte
 
 This code is made available "as is" for demonstration purposes, and not intended as a specific proposed method of implementing SSML support in HTML.
 
-A live version is available at [http://ets-research.org/ia11ylab/ia/ssml/tpac-2018/index.html/]
+A live version is available at [http://ets-research.org/ia11ylab/ia/ssml/tpac-2018/index.html]
 
 *Note* that you will need to have an SSML aware synthesizer available on Windows, or be running on MacOS.
 
