@@ -1,4 +1,4 @@
-# Proposal Including SSML in HTML via a JSON Model
+# Proposal for Including SSML in HTML via a JSON Model
 
 Currently, there is no standards-based mechanism for incorporating SSML into HTML to provide pronunciation or presentational hinting to assistive technologies which render text using text to speech synthesis (such as screen readers and read aloud tools). This issue has been previously shared with the WAI-ARIA group at TPAC 2016 [1]. 
 
@@ -41,7 +41,7 @@ Note in this last example, the `aria-ssml` attribute could have been placed on t
 
 ## SSML Tool
 
-SSMLTool is a demonstrator for examining JSON-baed approach to SSML support using the W3C Web Speech Synthesis API.  The tool demonstrates the basic process of consuming JSON encoded SSML contained as the attribute value of `data-ssml`. 
+SSMLTool is a demonstrator for examining JSON-based approach to SSML support using the W3C Web Speech Synthesis API.  The tool demonstrates the basic process of consuming JSON encoded SSML contained as the attribute value of `data-ssml`. 
 
 This code is made available "as is" for demonstration purposes, and not intended as a specific proposed method of implementing SSML support in HTML.
 
