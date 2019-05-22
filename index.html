@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
+	
 	<!-- SSML Testing Tool v2.3 
 			Author: Mark Hakkinen (mhakkinen@ets.org), Irfan Ali (iali@ets.org)
-			Last Modified: October 10, 2018
+			Prior Modified: October 10, 2018 IA
+			Last Modified: October 23, 2018 MH
 			-->
-    <meta charset="utf-8">
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width">
-    <title>ETS SSML Markup Tester v2.4</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="ssml.css" >
+	<title>ETS SSML Markup Tester v2.4</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">	
+	<link rel="stylesheet" href="ssml.css">
 	<script src="script.js"></script>
 	
   </head>
 
   <body>
 	 <div class="container"> 
-    <h1>ETS SSML Markup Tester v2.5 (10/10/2018)</h1>
-    <p><span id="instructions-section">Enter text</span> and then manually markup using the SSML data attribute format (described at:
+    <h1>ETS SSML in HTML Markup Tester v2.7 (10/23/2018)</h1>
+	<p><span id="instructions-section">Enter text</span> and then manually markup using the SSML data attribute format (described at:
 		<a href="https://github.com/mhakkinen/SSMLinHTMLproposal">https://github.com/mhakkinen/SSMLinHTMLproposal</a>), by selecting the sample
 		button below, or entering text,  then highlighting text, and selecting one of the SSML toolbar actions to be applied to the text.  The appropriate
 		SSML JSON attribute will be added.  Once your text is ready, click the speak button.</p>
@@ -37,14 +39,14 @@
 	
 	
 	<br>
-	<textarea id="AuthoredText" class="form-control txt" aria-labeledBy="instructions-section"  rows="4" cols="50" ></textarea>
+	<textarea id="AuthoredText" class="form-control txt" aria-labeledby="instructions-section" rows="4" cols="50"></textarea>
 	<br>
     
 	</div>
-	<div >
+	<div>
     	
-		<button onclick="example1()" class="btn btn-primary btn-sm">JSON Example 1</button>
-		<button onclick="example2()" class="btn btn-primary btn-sm">JSON Example 2</button>
+		<button onclick="example1()" class="btn btn-primary btn-sm">JSON example 1</button>
+		<button onclick="example2()" class="btn btn-primary btn-sm">JSON example 2</button>
 		<button onclick="example3()" class="btn btn-primary btn-sm">Plain Text</button>
 		<button onclick="clearText()" class="btn btn-danger btn-sm">Clear Text</button>
 				
@@ -82,6 +84,7 @@
 	
 	
 	</fieldset>
+
 </div>
 	
 	<fieldset>
@@ -101,7 +104,6 @@
     		Visual Scratch Pad for processed text
 		</legend>
 		<div>Generated String to be synthesized (specific to platform: MacSpeech markup or SSML:</div>
-		
 		<div class="codebox" id="pstruct"></div>
 		<div>JSON-ized SSML the above was generate from:</div>
         <div class="codebox" id="result"></div>
@@ -110,10 +112,8 @@
 	
     <script src="script-mac.js"></script>
 	<!-- container for platform information -->
-	
-	<p id="platform"></p>
+	<p id="platform">User Agent: Chrome 69 on MacIntel</p>
 	<footer>Questions or comments to <a href="emailto:mhakkinen@ets.org">Mark Hakkinen</a> or <a href="emailto:iali@ets.org">Irfan Ali</a> </footer>
-
 
 </div>	
 <script type="text/javascript">
@@ -123,7 +123,7 @@
 
 
 	function example1()
-		{document.getElementById('AuthoredText').value="I am now <span data-ssml='{\"prosody\" : {\"rate\":\"x-fast\"}}'>speaking very fast</span> and now <span data-ssml='{\"break\": {\"strength\":\"strong\"}}'></span> at a normal rate. I am speaking <span data-ssml='{\"prosody\" : {\"rate\":\"slow\"}}'>very slow</span>.  You need to make it <span data-ssml='{\"emphasis\" : {\"level\":\"strong\"}}'>very strong should sound different</span>, very strong and now normal rate. Here <span data-ssml='{\"say-as\" : {\"interpret-as\":\"cardinal\"}}'>12345</span> is large number.";
+		{document.getElementById('AuthoredText').value="I am now <span data-ssml='{\"prosody\" : {\"rate\":\"x-fast\"}}'>speaking very fast</span> and now <span data-ssml='{\"break\": {\"strength\":\"strong\"}}'></span> at a normal rate. Now I am speaking <span data-ssml='{\"prosody\" : {\"rate\":\"slow\"}}'>very slow</span>.  If text is bolded <span data-ssml='{\"emphasis\" : {\"level\":\"strong\"}}'>it should be spoken with emphasis!</span>.  <span data-ssml='{\"say-as\" : {\"interpret-as\":\"cardinal\"}}'>80302</span> is large number while <span data-ssml='{\"say-as\" : {\"interpret-as\":\"cardinal\"}}'>80302</span> is also a zip code.";
 			document.getElementById('chkJSONAttr').checked=true;
 
 	}
@@ -147,5 +147,6 @@
 </script>
 
 	 </div>
+
 </body>
 </html>
